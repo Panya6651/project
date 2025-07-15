@@ -27,9 +27,8 @@ include "controls/idUser.php";
 
         <main class="p-4 flex-grow-1">
             <h2>เเก้ไขผู้ใช้งาน</h2>
-            <form action="controls/editUser.php" method="POST">
+            <form action="controls/editUser.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $user['id']; ?>">
-
                 <div class="mb-3">
                     <label for="">Firstname</label>
                     <input type="text" name="first_name" class="form-control"
@@ -52,9 +51,15 @@ include "controls/idUser.php";
                         value="<?= htmlspecialchars($user['phone']); ?>">
                 </div>
                 <div class="mb-3">
+                    <label for="">picture</label>
+                    <input type="file" name="profile_image" class="form-control">
+                </div>
+                <div class="mb-3">
                     <label for="">email</label>
                     <input type="text" name="email" class="form-control"
                         value="<?= htmlspecialchars($user['email']); ?>">
+                    
+                    
                     <button type="submit" class="btn btn-primary">บันทึก</button>
                     <button type="reset" class="btn btn-dark">รีเซ็ต</button>
                     <a href="uesr.php"></a>

@@ -11,7 +11,7 @@
             <a href="kick_user.php" class="nav-link text-white">เตะผู้ใช้งาน</a>
         </li>
         <li class="nav-item">
-            <a href="index2.php" class="nav-link text-white">อาหาร</a>
+            <a href="food.php" class="nav-link text-white">อาหาร</a>
         </li>
 
     </ul>

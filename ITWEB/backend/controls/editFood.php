@@ -4,11 +4,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $id = $_POST['id'];
-        $first_name = $_POST['first_name'];
-        $last_name = $_POST['last_name'];
-        $address = $_POST['address'];
-        $phone = $_POST['phone'];
-        $email = $_POST['email'];
+        $product_name = $_POST['product_name'];
+        $description = $_POST['description'];
+        $price = $_POST['price'];
+        $created_at = $_POST['created_at'];
         $profile_image = null;
 
         if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0){
@@ -22,18 +21,18 @@
                     $profile_image = $image_name;
                 } else {
                     $_SESSION['error'] = "Sorry, there was an error uploading your file.";
-                    header("Location: ../edituser.php?id=" . $id);
+                    header("Location: ../editfood.php?id=" . $id);
                     exit;
                 }
             } else {
                 $_SESSION['error'] = "Invalid file type. Only JPG, JPEG, PNG & GIF files are allowed.";
-                header("Location: ../edituser.php?id=" . $id);
+                header("Location: ../editfood.php?id=" . $id);
                 exit;
             }
         }
 
-        $stmt = $pdo->prepare("UPDATE users SET first_name = ?, last_name = ?, address = ?, phone = ?, email = ?".($profile_image ? ", profile_image = ?" : "")." WHERE id = ?");
-        $params = [$first_name, $last_name, $address, $phone, $email];
+        $stmt = $pdo->prepare("UPDATE products SET product_name = ?, description = ?, price = ?, created_at = ?".($profile_image ? ", profile_image = ?" : "")." WHERE id = ?");
+        $params = [$product_name, $description, $price, $created_at];
         if ($profile_image) {
             $params[] = $profile_image;
         }
@@ -42,12 +41,12 @@
 
         if ($result) {
             $_SESSION['success'] = "User updated successfully!";
-            header("Location: ../user.php");
+            header("Location: ../food.php");
         } else {
             $_SESSION['error'] = "Failed to update user.";
-            header("Location: ../edituser.php?id=" . $id);
+            header("Location: ../editfood.php?id=" . $id);
         }
 
         exit;
     }
-?>  
+?>
